@@ -1,0 +1,373 @@
+<html>
+<head>
+      <i> <div style="text-align: center;">
+    <i><div><span style="font-size: 39px; color: blue;"><u>RUDRAKSH GUEST HOUSE</u></span></div></i>
+</head>
+<body style="background-color: lightblue;"> 
+ <p><i><span style="font-size: 19px; color: black; "> HI! Welcome to the house of Mr. Prasoon Srivastava,Ankita Srivastava and chotu Mihir Srivastava. It is the house where you can sing,dance,eat,stay,cook,cleannig,murder,etc. at a very low cost.</p></span></i>
+<br><span style="font-size: 24px;">--------------------------------------------------------------------------
+<br><br><span style="font-size: 40px;"><u> We have our most helpful and respected helpress</br></u> 
+<img src="file:///C:/Users/RudrakshAdmin/Downloads/ankita-staff.jpeg" 
+     alt="Rudraksh Guest House" 
+     style="width: 100px; height: 100px; border-radius: 90%; object-fit: cover; object-position: center;">
+<br><span style="font-size: 24px; ">MS.ANKITA SRIVATSAVA </span>
+<br> -----------------------------------------------
+<br><span style= "font-size: 28px; color: black"><u>"Let's see the guest house</span></U>
+<br>
+<img src="file:///C:/Users/RudrakshAdmin/Downloads/kitchen.jpeg" 
+     alt="Kitchen" 
+     style="width: 350px; height: 200px; border-radius: 50%; object-fit: cover;">
+<div style="text-align: center;">
+<span style="font-size: 35px;">KITCHEN</span>
+<br><img src="file:///C:/Users/RudrakshAdmin/Downloads/loby.jpeg" 
+     alt="Lobby" 
+     style="width: 300px; height: 200px; border-radius: 15px; object-fit: cover;">
+<br><div style="text-align: center;">
+<span style="font-size: 35px;">HALL</span>
+<br><img src="file:///C:/Users/RudrakshAdmin/Downloads/office.jpeg" 
+     alt="Office" 
+     style="width: 250px; height: 250px; object-fit: cover; border-radius: 0px;">
+<br><div style="text-align: center;">
+<span style="font-size: 35px;">OFFICE</span>
+<br><img src="file:///C:/Users/RudrakshAdmin/Downloads/bedroommom.jpeg" 
+     alt="Bedroom" 
+     style="width: 250px; height: 250px; object-fit: cover; border-radius: 0px;">
+<br><div style="text-align: center:">
+<span style="font-size: 35px;">BEDROOM</span>
+<br><span style="text-align: center:"></<span>
+<br><br><span style="font-size :40px;"><u>RATE TABLE</span></u>
+<br><br><span style="font-size: 22px">Let's see the rates for your activities in RUDRAKSH GUEST HOUSE...</span>
+<br><br><!-- RATE CALCULATOR BOX -->
+<div style="border: 2px solid #000000; padding: 25px; width: 480px; border-radius: 8px; background-color: #ffffff; font-family: sans-serif; margin-top: 20px;">
+    
+    <h2 style="color: blue; text-decoration: underline; margin-top: 0; font-size: 24px; text-align: center;">Activity Rate Calculator</h2>
+    
+    <table style="width: 100%; border-collapse: collapse;">
+        <!-- 1. Name -->
+        <tr>
+            <td style="padding: 10px 5px; font-weight: bold; width: 40%;">Name:</td>
+            <td style="padding: 10px 5px;">
+                <input type="text" id="calcName" placeholder="Enter your name" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+            </td>
+        </tr>
+        
+        <!-- 2. Date -->
+        <tr>
+            <td style="padding: 10px 5px; font-weight: bold;">Date:</td>
+            <td style="padding: 10px 5px;">
+                <input type="date" id="calcDate" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+            </td>
+        </tr>
+        
+        <!-- 3. Selective Activity -->
+        <tr>
+            <td style="padding: 10px 5px; font-weight: bold;">Select Activity:</td>
+            <td style="padding: 10px 5px;">
+                <select id="calcActivity" onchange="updateDurationLabel()" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                    <option value="">-- Choose Activity --</option>
+                    <option value="cooking" data-rate="20">Cooking (₹20 / min)</option>
+                    <option value="staying" data-rate="150">Staying AC Room (₹150 / night)</option>
+                    <option value="cleaning" data-rate="70">Cleaning (₹70 / hour)</option>
+                    <option value="repair" data-rate="60">Repair (₹60 / gadget)</option>
+                </select>
+            </td>
+        </tr>
+        
+        <!-- 4. Dynamic Quantity/Duration Input -->
+        <tr>
+            <td style="padding: 10px 5px; font-weight: bold;" id="durationLabel">Enter Quantity:</td>
+            <td style="padding: 10px 5px;">
+                <input type="number" id="calcQty" min="1" value="1" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+            </td>
+        </tr>
+        
+        <!-- OK Button Row -->
+        <tr>
+            <td colspan="2" style="padding: 15px 5px 10px 5px; text-align: center;">
+                <button type="button" onclick="calculateRate()" style="background-color: blue; color: white; border: none; padding: 12px 30px; font-size: 16px; font-weight: bold; border-radius: 4px; cursor: pointer; width: 100%;">
+                    OK
+                </button>
+            </td>
+        </tr>
+    </table>
+
+    <!-- DISPLAY RATE BOX (Inside the main container) -->
+    <div id="rateResultBox" style="margin-top: 15px; padding: 15px; border: 1px dashed blue; border-radius: 6px; background-color: #f0f4ff; display: none; text-align: center;">
+        <p id="resultText" style="margin: 0; font-size: 16px; color: #333; line-height: 1.5;"></p>
+    </div>
+
+</div>
+
+<!-- JAVASCRIPT FOR CALCULATIONS -->
+<script>
+// Automatically changes the label based on what activity is chosen
+function updateDurationLabel() {
+    var activity = document.getElementById("calcActivity").value;
+    var label = document.getElementById("durationLabel");
+    
+    if (activity === "cooking") {
+        label.innerText = "Minutes:";
+    } else if (activity === "staying") {
+        label.innerText = "Nights:";
+    } else if (activity === "cleaning") {
+        label.innerText = "Hours:";
+    } else if (activity === "repair") {
+        label.innerText = "Number of Gadgets:";
+    } else {
+        label.innerText = "Enter Quantity:";
+    }
+}
+
+// Calculates and displays the rate right inside the box when clicking OK
+function calculateRate() {
+    var name = document.getElementById("calcName").value.trim();
+    var date = document.getElementById("calcDate").value;
+    var activitySelect = document.getElementById("calcActivity");
+    var qty = parseFloat(document.getElementById("calcQty").value);
+    
+    var selectedOption = activitySelect.options[activitySelect.selectedIndex];
+    var activityText = selectedOption.text;
+    var rate = parseFloat(selectedOption.getAttribute("data-rate"));
+
+    // Validation checks
+    if (!name || !date || !activitySelect.value || isNaN(qty) || qty <= 0) {
+        alert("Please fill out all fields correctly!");
+        return;
+    }
+
+    // Mathematical calculation
+    var totalCost = rate * qty;
+
+    // Formatting date to look nice (DD-MM-YYYY)
+    var formattedDate = date.split('-').reverse().join('-');
+
+    // Displaying the final result inside the box
+    var resultBox = document.getElementById("rateResultBox");
+    var resultText = document.getElementById("resultText");
+    
+    resultText.innerHTML = "<strong>Hello " + name + "!</strong><br>" +
+                           "Date: " + formattedDate + "<br>" +
+                           "Activity: " + activityText.split(' (')[0] + "<br>" +
+                           "Quantity: " + qty + "<br>" +
+                           "<span style='font-size: 18px; color: blue; font-weight: bold;'>Total Cost: ₹" + totalCost + "</span>";
+    
+    resultBox.style.display = "block"; // Shows the result area
+}
+</script>
+<br><span style="font-size: 40px;"><u> STILL HAVING ENQUIRY?</span></u>
+<br><br><!-- ENQUIRY TABLE BOX -->
+<div style="border: 2px solid #000000; padding: 25px; width: 500px; border-radius: 8px; background-color: yellow; font-family: sans-serif; margin-top: 20px;">
+    
+    <h2 style="color: blue; text-decoration: underline; margin-top: 0; font-size: 24px; text-align: center;">Enquiry Form</h2>
+    
+    <form action="https://formspree.io/f/mnpnkwoq" method="POST">
+        <table style="width: 100%; border-collapse: collapse;">
+            
+            <!-- 1. Full Name -->
+            <tr>
+                <td style="padding: 10px 5px; font-weight: bold; width: 40%;">Full Name:</td>
+                <td style="padding: 10px 5px;">
+                    <input type="text" name="Full Name" placeholder="Enter your name" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                </td>
+            </tr>
+            
+            <!-- 2. Age -->
+            <tr>
+                <td style="padding: 10px 5px; font-weight: bold;">Age:</td>
+                <td style="padding: 10px 5px;">
+                    <input type="number" name="Age" min="1" max="120" placeholder="Enter age" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                </td>
+            </tr>
+            
+            <!-- 3. Gender -->
+            <tr>
+                <td style="padding: 10px 5px; font-weight: bold;">Gender:</td>
+                <td style="padding: 10px 5px;">
+                    <select name="Gender" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                        <option value="">-- Select Gender --</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </td>
+            </tr>
+            
+            <!-- 4. Mobile No. -->
+            <tr>
+                <td style="padding: 10px 5px; font-weight: bold;">Mobile No:</td>
+                <td style="padding: 10px 5px;">
+                    <input type="tel" name="Mobile No" placeholder="Enter mobile number" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                </td>
+            </tr>
+            
+            <!-- 5. Enquiry -->
+            <tr>
+                <td style="padding: 10px 5px; font-weight: bold; vertical-align: top;">Your Enquiry:</td>
+                <td style="padding: 10px 5px;">
+                    <textarea name="Enquiry Details" rows="3" placeholder="Type your query here..." required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; resize: vertical;"></textarea>
+                </td>
+            </tr>
+            
+            <!-- 6. How to Solve Issue -->
+            <tr>
+                <td style="padding: 10px 5px; font-weight: bold; vertical-align: top;">Suggested Solution: <br><span style="font-size: 11px; color: gray; font-weight: normal;">(How to solve this issue)</span></td>
+                <td style="padding: 10px 5px;">
+                    <textarea name="Suggested Solution" rows="3" placeholder="According to you, how should we solve this?" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; resize: vertical;"></textarea>
+                </td>
+            </tr>
+            
+            <!-- Submit Button Row -->
+            <tr>
+                <td colspan="2" style="padding: 15px 5px 0 5px; text-align: center;">
+                    <button type="submit" style="background-color: blue; color: white; border: none; padding: 12px 30px; font-size: 16px; font-weight: bold; border-radius: 4px; cursor: pointer; width: 100%;">
+                        Submit Enquiry
+                    </button>
+                </td>
+            </tr>
+            
+        </table>
+    </form>
+</div>
+
+<br><br><br><span style="font-size: 39px;"><u>INTRESTED FOR BOOKING?
+
+<br><!-- SCROLLING MARQUEE BOX -->
+<div style="background-color: red; padding: 20px; border: 2px solid #000000; border-radius: 8px; margin: 20px auto;">
+    
+    <marquee behavior="scroll" direction="left" scrollamount="12" style="font-size: 30px; color: blue; font-weight: bold;">
+        Note: To come inside you must book first using below listed instructions.
+    </marquee>
+
+</div>
+<br><br><!-- SECURE BOOKING SYSTEM FORM -->
+<div style="border: 2px solid #000000; padding: 25px; width: 450px; border-radius: 8px; background-color: #ffffff; font-family: sans-serif; margin: 20px auto;">
+    
+    <h2 style="color: blue; text-decoration: underline; margin-top: 0; font-size: 24px; text-align: center;">Book Your Stay</h2>
+    
+    <!-- Direct link jo security block nahi karega -->
+    <form action="https://formspree.io" method="POST">
+        
+        <!-- Check-in Date -->
+        <div style="margin-bottom: 12px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px;">Check-In Date:</label>
+            <input type="date" name="Check-In Date" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+        </div>
+        
+        <!-- Check-out Date -->
+        <div style="margin-bottom: 12px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px;">Check-Out Date:</label>
+            <input type="date" name="Check-Out Date" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+        </div>
+        
+        <!-- Room Selection Dropdown -->
+        <div style="margin-bottom: 12px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px;">Select Room Type:</label>
+            <select name="Room Type" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                <option value="">-- Choose a Room --</option>
+                <option value="standard">Standard Room</option>
+                <option value="deluxe">Deluxe Room</option>
+                <option value="suite">Executive Suite</option>
+            </select>
+        </div>
+        
+        <!-- Guest Full Name -->
+        <div style="margin-bottom: 12px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px;">Full Name:</label>
+            <input type="text" name="Guest Name" placeholder="Enter your name" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+        </div>
+        
+        <!-- Contact Mobile Number -->
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px;">Phone Number:</label>
+            <input type="tel" name="Mobile No" placeholder="Enter mobile number" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+        </div>
+        
+        <!-- Submit Button -->
+        <button type="submit" style="background-color: blue; color: white; border: none; padding: 12px 20px; font-size: 16px; font-weight: bold; border-radius: 4px; cursor: pointer; width: 100%;">
+            Check Availability & Book (don't click)
+        </button>
+
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><span style="font-size: 40px;">Thank you for visiting the site🤗🥰
+<br><br><br><!-- RATING BOX -->
+<div style="border: 2px solid #000000; padding: 25px; width: 450px; border-radius: 8px; background-color: #ffffff; font-family: sans-serif; margin-top: 20px;">
+    
+    <h2 style="color: blue; text-decoration: underline; margin-top: 0; font-size: 24px; text-align: center;">Rate Your Experience</h2>
+    
+    <form action="https://formspree.io/f/mnpnkwoq" method="POST">
+        
+        <!-- User Name -->
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px;">Your Name:</label>
+            <input type="text" name="Guest Name" placeholder="Enter your name" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+        </div>
+
+        <!-- Star Rating Radio Buttons -->
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 10px;">Select Stars:</label>
+            <div style="display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 8px;">
+                
+                <input type="radio" id="star5" name="Rating" value="5 Stars" required style="display:none;">
+                <label for="star5" style="font-size: 30px; color: #ccc; cursor: pointer;" class="star">★</label>
+                
+                <input type="radio" id="star4" name="Rating" value="4 Stars" style="display:none;">
+                <label for="star4" style="font-size: 30px; color: #ccc; cursor: pointer;" class="star">★</label>
+                
+                <input type="radio" id="star3" name="Rating" value="3 Stars" style="display:none;">
+                <label for="star3" style="font-size: 30px; color: #ccc; cursor: pointer;" class="star">★</label>
+                
+                <input type="radio" id="star2" name="Rating" value="2 Stars" style="display:none;">
+                <label for="star2" style="font-size: 30px; color: #ccc; cursor: pointer;" class="star">★</label>
+                
+                <input type="radio" id="star1" name="Rating" value="1 Star" style="display:none;">
+                <label for="star1" style="font-size: 30px; color: #ccc; cursor: pointer;" class="star">★</label>
+                
+            </div>
+        </div>
+
+        <!-- Optional Comments -->
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px;">Review Comments:</label>
+            <textarea name="Comments" rows="3" placeholder="Tell us about your stay..." style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; resize: vertical;"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" style="background-color: blue; color: white; border: none; padding: 12px 20px; font-size: 16px; font-weight: bold; border-radius: 4px; cursor: pointer; width: 100%;">
+            Submit Review
+        </button>
+
+    </form>
+</div>
+
+<!-- CSS For Interactive Star Hover/Selection Effects -->
+<style>
+    .star:hover, .star:hover ~ .star { color: #ffcc00 !important; }
+    input[type="radio"]:checked ~ label { color: #ffcc00 !important; }
+</style></u>
+<br><div style="text-align: right;">website brought by:-</span>
+<br><div style="text-align: right">Mihir Srivastava</span>
+<br><div style="text-align: right"> AI= Google Gemini</div>
+
+<br><br><div style="text-align: center;"><u>----end of document----
+</body>
+</html>
